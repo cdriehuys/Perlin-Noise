@@ -27,7 +27,16 @@ public class PrimeGenerator {
 	public int nextPrime() {
 		
 		while (true) {
-			int num = random.nextInt();
+			int num = Math.abs(random.nextInt());
+			if (isPrime(num))
+				return num;
+		}
+	}
+	
+	public int nextPrimeInRange(int min, int max) {
+		
+		while (true) {
+			int num = random.nextInt(max - min) + min;
 			if (isPrime(num))
 				return num;
 		}
