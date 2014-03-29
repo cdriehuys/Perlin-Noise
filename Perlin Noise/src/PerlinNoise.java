@@ -18,7 +18,7 @@ public class PerlinNoise {
 			primes[i][0] = primeGen.nextPrimeInRange(45, 65);
 			primes[i][1] = primeGen.nextPrimeInRange(12000,  18000);
 			primes[i][2] = primeGen.nextPrimeInRange(750000, 800000);
-			primes[i][3] = primeGen.nextPrimeInRange(1350000000, 1400000000);
+			primes[i][3] = primeGen.nextPrimeInRange(1350000000, 1360000000);
 		}
 	}
 	
@@ -38,7 +38,6 @@ public class PerlinNoise {
 	
 	public float smoothedNoise1D(int x, int octave) {
 		
-		//online method
 		return noise1D(x, octave) / 2 + noise1D(x - 1, octave) / 4 + noise1D(x + 1, octave) / 4;
 	}
 	
@@ -96,7 +95,6 @@ public class PerlinNoise {
 		float total = 0;
 		
 		for (int i = 0; i < octaves; i++) {
-			
 			int frequency = (int) Math.pow(2, i);
 			float amplitude = (float) Math.pow(persistence, i);
 			
