@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class PerlinNoise {
 	
 	public final int octaves = 8;
-	public final float persistence = .5f;
+	public final float persistence = .25f;
 	
 	private int[][] primes;
 	private PrimeGenerator primeGen;
@@ -52,22 +52,20 @@ public class PerlinNoise {
 		
 		return cosInterpolate(v1, v2, fracX);
 	}
-
-	public static void main(String[] args) {
+	
+	public float perlinNoise1D(float x) {
 		
-		PerlinNoise noise = new PerlinNoise(0);
-		float max = 0;
-		float avg = 0;
-		for (int i = 0; i < 10; i++) {
-			float val = noise.interpolatedNoise1D((float)i / 10, 1);
-			System.out.println("Noise at " + i + ": " + val);
-			if (Math.abs(val) > Math.abs(max))
-				max = val;
-			avg += val;
+		float total = 0;
+		
+		for (int i = 0; i < octaves; i++) {
+			
+			int frequency = (int) Math.pow(2, i);
+			float amplitude = (float) Math.pow(persistence, i);
+			
+			total += interpolatedNoise1D(x * frequency, i) * amplitude;
 		}
-		avg = avg / 10;
-		System.out.println("Max val is: " + max);
-		System.out.println("Avg val is: " + avg);
+		
+		return total;
 	}
 
 }
