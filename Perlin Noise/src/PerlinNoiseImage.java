@@ -8,10 +8,11 @@ import javax.swing.SwingUtilities;
 
 public class PerlinNoiseImage extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
 	public final int GAME_WIDTH = 1080;
 	public final int GAME_HEIGHT = 720;
 	
-	private final long seed = 4;
+	private final long seed = 12;
 	
 	public PerlinNoiseImage() {
 		
@@ -28,8 +29,10 @@ public class PerlinNoiseImage extends JFrame {
 	
 	private class ImagePanel extends JPanel {
 		
+		private static final long serialVersionUID = 1L;
 		private PerlinNoise noise = new PerlinNoise(seed);
 		
+		@SuppressWarnings("unused")
 		public void draw1D(Graphics g) {
 			
 			for (int i = 0; i < GAME_WIDTH; i++) {
@@ -45,9 +48,9 @@ public class PerlinNoiseImage extends JFrame {
 				for (int j = 0; j < GAME_HEIGHT; j++) {
 					float val = Math.abs(noise.perlinNoise2D((float) i / 100, (float) j / 100));
 					if (val < .05) {
-						g.setColor(new Color(0, 0, 190));
-					} else if (.05 <= val && val < .1) {
 						g.setColor(new Color(0, 0, 175));
+					} else if (.05 <= val && val < .1) {
+						g.setColor(new Color(0, 0, 190));
 					} else if (.1 <= val && val < .15) {
 						g.setColor(new Color(255, 255, 153));
 					} else if (.15 <= val && val < .35) {
